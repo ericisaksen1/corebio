@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
-import { confirmPayment, updateOrderStatus } from "@/actions/orders"
+import { confirmPayment, updateOrderStatus, resendStatusEmail } from "@/actions/orders"
 import { useToast } from "@/components/ui/toast"
 import { ShippingLabelForm } from "./shipping-label-form"
 import type { OrderStatus, PaymentStatus } from "@prisma/client"
@@ -105,6 +105,27 @@ export function AdminOrderActions({
           {currentStatus === "CANCELLED" && (
             <p className="text-sm text-gray-500">This order has been cancelled.</p>
           )}
+        </div>
+
+        {/* Resend status email */}
+        <div className="mt-4 border-t border-gray-200 pt-4">
+          <Button
+            variant="outline"
+            className="w-full"
+            disabled={isPending}
+            onClick={() => {
+              startTransition(async () => {
+                const result = await resendStatusEmail(orderId)
+                if (result.error) {
+                  toast(result.error, "error")
+                } else {
+                  toast("Status email sent")
+                }
+              })
+            }}
+          >
+            {isPending ? "Sending..." : "Resend Status Email"}
+          </Button>
         </div>
 
         {/* Manual status override */}

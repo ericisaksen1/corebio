@@ -127,6 +127,27 @@ export async function updateOrderStatus(
   }
 }
 
+export async function resendStatusEmail(
+  orderId: string
+): Promise<{ success: boolean; error?: string }> {
+  try {
+    await requireAdmin()
+
+    const order = await prisma.order.findUnique({
+      where: { id: orderId },
+      select: { orderNumber: true, status: true, user: { select: { email: true } } },
+    })
+
+    if (!order) return { success: false, error: "Order not found" }
+    if (!order.user?.email) return { success: false, error: "No email address for this customer" }
+
+    await notifyCustomerStatusChanged(order.user.email, order.orderNumber, order.status)
+    return { success: true }
+  } catch {
+    return { success: false, error: "Failed to send email" }
+  }
+}
+
 export async function addAdminNote(orderId: string, note: string) {
   await requireAdmin()
 
