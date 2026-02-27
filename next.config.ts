@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         hostname: "fastly.picsum.photos",
       },
     ],
+    localPatterns: [
+      {
+        pathname: "/uploads/**",
+      },
+    ],
   },
 };
 
