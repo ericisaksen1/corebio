@@ -5,6 +5,7 @@ import { getPaymentProvider } from "@/lib/payments"
 import { formatCurrency } from "@/lib/utils"
 import { PaymentConfirmation } from "./payment-confirmation"
 import Link from "next/link"
+import { CopyOrderNumber } from "./copy-order-number"
 
 export const metadata = { title: "Order Confirmation" }
 
@@ -48,7 +49,10 @@ export default async function ConfirmationPage({ searchParams }: Props) {
         </div>
         <h1 className="mt-4 text-2xl font-bold">Order Placed!</h1>
         <p className="mt-2 text-gray-600 dark:text-gray-400">
-          Order <span className="font-mono font-semibold">{order.orderNumber}</span>
+          Order{" "}
+          <CopyOrderNumber orderNumber={order.orderNumber}>
+            <span className="font-mono font-semibold">{order.orderNumber}</span>
+          </CopyOrderNumber>
         </p>
       </div>
 
@@ -76,7 +80,9 @@ export default async function ConfirmationPage({ searchParams }: Props) {
             {instructions.additionalFields.map((field) => (
               <div key={field.label} className="flex justify-between text-sm">
                 <span className="text-gray-500 dark:text-gray-400">{field.label}</span>
-                <span className="font-medium font-mono">{field.value}</span>
+                <CopyOrderNumber orderNumber={field.value}>
+                  <span className="font-medium font-mono">{field.value}</span>
+                </CopyOrderNumber>
               </div>
             ))}
           </div>
