@@ -137,6 +137,16 @@ export function EntryPopup({
         {/* Buttons */}
         <div className="flex gap-3">
           <button
+            onClick={handleAgree}
+            className="flex-1 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors hover:opacity-90"
+            style={{
+              backgroundColor: colors.agreeBg || "var(--color-primary)",
+              color: colors.agreeText || "#ffffff",
+            }}
+          >
+            {agreeText || "I Agree"}
+          </button>
+          <button
             onClick={handleDisagree}
             className="flex-1 rounded-lg border px-4 py-2.5 text-sm font-medium transition-colors hover:opacity-80"
             style={{
@@ -146,16 +156,6 @@ export function EntryPopup({
             }}
           >
             {disagreeText || "I Disagree"}
-          </button>
-          <button
-            onClick={handleAgree}
-            className="flex-1 rounded-lg px-4 py-2.5 text-sm font-medium transition-colors hover:opacity-90"
-            style={{
-              backgroundColor: colors.agreeBg || "var(--color-primary)",
-              color: colors.agreeText || "#ffffff",
-            }}
-          >
-            {agreeText || "I Agree"}
           </button>
         </div>
       </div>
