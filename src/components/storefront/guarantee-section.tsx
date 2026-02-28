@@ -126,7 +126,7 @@ export function GuaranteeSection() {
         {/* Right — Product images */}
         <div
           className="relative order-1 min-h-[300px] bg-cover bg-center lg:order-2 lg:min-h-[500px]"
-          style={{ backgroundImage: "url('/uploads/guarantee-products.webp')" }}
+          style={{ backgroundImage: "url('/uploads/3b04414b-f0be-4f5b-8780-21def7636aae.webp')" }}
           role="img"
           aria-label="Core BioRegen Products"
         />
