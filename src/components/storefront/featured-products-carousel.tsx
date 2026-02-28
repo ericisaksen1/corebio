@@ -6,6 +6,7 @@ import Image from "next/image"
 import { formatCurrency } from "@/lib/utils"
 import type { ComponentColorProps } from "@/lib/component-colors"
 import { sectionColorStyle, headlineColorStyle, textColorStyle, linkColorProps } from "@/lib/component-colors"
+import { AddToCartButton } from "./add-to-cart-button"
 
 interface Product {
   slug: string
@@ -196,8 +197,19 @@ export function FeaturedProductsCarousel({
                         href={`/products/${product.slug}`}
                         className="flex-1 rounded-full border border-[var(--color-product-btn-border)] bg-[var(--color-product-btn-bg)] px-5 py-2.5 text-center text-sm font-medium text-[var(--color-product-btn-text)] transition-all duration-150 hover:bg-[var(--color-product-btn-hover-bg)] hover:text-[var(--color-product-btn-hover-text)]"
                       >
-                        View
+                        View Details
                       </Link>
+                      {product.id && (
+                        <div className="flex-1">
+                          <AddToCartButton
+                            productId={product.id}
+                            slug={product.slug}
+                            defaultVariantId={product.defaultVariantId ?? null}
+                            hasMultipleVariants={product.hasMultipleVariants ?? false}
+                            stock={product.stock ?? 0}
+                          />
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

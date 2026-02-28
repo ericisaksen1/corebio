@@ -27,7 +27,7 @@ export function AddToCartButton({
   if (hasMultipleVariants) {
     return (
       <Link href={`/products/${slug}`}>
-        <Button size="sm" className="w-full border-[var(--color-product-btn-border)] bg-[var(--color-product-btn-bg)] text-[var(--color-product-btn-text)] hover:bg-[var(--color-product-btn-hover-bg)] hover:text-[var(--color-product-btn-hover-text)]">
+        <Button size="sm" className="w-full rounded-full border-[var(--color-product-btn-border)] bg-[var(--color-product-btn-bg)] text-[var(--color-product-btn-text)] hover:bg-[var(--color-product-btn-hover-bg)] hover:text-[var(--color-product-btn-hover-text)]">
           View Options
         </Button>
       </Link>
@@ -49,7 +49,7 @@ export function AddToCartButton({
   return (
     <Button
       size="sm"
-      className="w-full border-[var(--color-product-btn-border)] bg-[var(--color-product-btn-bg)] text-[var(--color-product-btn-text)] hover:bg-[var(--color-product-btn-hover-bg)] hover:text-[var(--color-product-btn-hover-text)]"
+      className="w-full rounded-full border-[var(--color-product-btn-border)] bg-[var(--color-product-btn-bg)] text-[var(--color-product-btn-text)] hover:bg-[var(--color-product-btn-hover-bg)] hover:text-[var(--color-product-btn-hover-text)]"
       onClick={handleClick}
       disabled={isPending || !canAdd}
     >
