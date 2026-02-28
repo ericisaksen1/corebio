@@ -57,7 +57,18 @@ export function AdminToolbar() {
   const { editHref, editLabel } = useContext(AdminEditContext)
 
   const role = session?.user?.role
-  if (role !== "ADMIN" && role !== "SUPER_ADMIN") return null
+  const isAdmin = role === "ADMIN" || role === "SUPER_ADMIN"
+
+  useEffect(() => {
+    if (isAdmin) {
+      document.documentElement.style.setProperty("--toolbar-height", "32px")
+      return () => {
+        document.documentElement.style.setProperty("--toolbar-height", "0px")
+      }
+    }
+  }, [isAdmin])
+
+  if (!isAdmin) return null
 
   return (
     <div className="flex h-8 items-center bg-gray-900 px-4 text-xs text-gray-300">

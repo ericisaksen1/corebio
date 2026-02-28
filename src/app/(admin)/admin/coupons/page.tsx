@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
+import { DeleteCouponButton } from "./delete-coupon-button"
 
 export const metadata = { title: "Coupons | Admin" }
 
@@ -39,6 +40,7 @@ export default async function AdminCouponsPage() {
                 <th className="px-4 py-3 text-left font-medium text-secondary">Used</th>
                 <th className="px-4 py-3 text-left font-medium text-secondary">Expires</th>
                 <th className="px-4 py-3 text-left font-medium text-secondary">Status</th>
+                <th className="px-4 py-3 text-right font-medium text-secondary"></th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -85,6 +87,9 @@ export default async function AdminCouponsPage() {
                       ) : (
                         <Badge color="green">Active</Badge>
                       )}
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <DeleteCouponButton couponId={coupon.id} />
                     </td>
                   </tr>
                 )
