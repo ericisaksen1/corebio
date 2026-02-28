@@ -118,7 +118,7 @@ function createLabelTexture(aspectRatio: number): THREE.CanvasTexture {
   ctx.font = "bold 72px Arial, Helvetica, sans-serif"
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
-  ctx.fillText("CORE BIOREGEN", cx, h * 0.37)
+  ctx.fillText("CORE BIOGEN", cx, h * 0.37)
 
   // Divider line
   ctx.strokeStyle = "#cccccc"
@@ -557,7 +557,7 @@ export function Hero3D() {
             <span className="text-blue-400">Proven Quality</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-gray-300 sm:text-xl lg:mx-0 mx-auto">
-            Core BioRegen delivers research-use peptides manufactured to exceed
+            Core Biogen delivers research-use peptides manufactured to exceed
             99% purity standards, with every batch independently verified through
             third-party laboratory testing for accuracy and consistency.
           </p>

@@ -6,7 +6,7 @@ export function GuaranteeSection() {
         <div className="order-2 flex items-center justify-center px-8 py-12 sm:px-12 lg:order-1 lg:px-16 lg:py-20">
           <div className="w-full max-w-[800px]">
           <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            The Core BioRegen Guarantee
+            The Core Biogen Guarantee
           </h2>
           <p className="mt-4 text-lg leading-relaxed text-gray-600">
             We don&apos;t compromise on quality. Every product meets the highest
@@ -128,7 +128,7 @@ export function GuaranteeSection() {
           className="relative order-1 min-h-[300px] bg-cover bg-center lg:order-2 lg:min-h-[500px]"
           style={{ backgroundImage: "url('/uploads/3b04414b-f0be-4f5b-8780-21def7636aae.webp')" }}
           role="img"
-          aria-label="Core BioRegen Products"
+          aria-label="Core Biogen Products"
         />
       </div>
     </section>
