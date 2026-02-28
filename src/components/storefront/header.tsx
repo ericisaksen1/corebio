@@ -170,17 +170,25 @@ export async function Header() {
   if (headerLayout === "classic") {
     return (
       <header className="sticky top-0 z-40 bg-[var(--header-bg)]">
+        {/* Mobile: logo full-width on top, utils below */}
+        <div className="flex flex-col px-4 md:hidden">
+          <div className="flex w-full items-center justify-center py-2">{logo}</div>
+          <div className="flex items-center justify-center gap-2 pb-2">
+            {utils}
+            <MobileMenu items={mobileItems} />
+          </div>
+        </div>
+        {/* Desktop: classic 3-column layout */}
         <div
-          className="container-header flex items-center px-4 sm:px-6 lg:px-8"
+          className="container-header hidden items-center px-4 sm:px-6 lg:px-8 md:flex"
           style={{ height: headerH }}
         >
           <div className="flex w-1/4 shrink-0 items-center">{logo}</div>
-          <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
+          <nav className="flex flex-1 items-center justify-center gap-8">
             <NavItems items={items} />
           </nav>
           <div className="flex w-1/4 shrink-0 items-center justify-end gap-2">
             {utils}
-            <MobileMenu items={mobileItems} />
           </div>
         </div>
       </header>
@@ -192,17 +200,25 @@ export async function Header() {
     return (
       <header className="sticky top-0 z-40 bg-[var(--header-bg)]">
         <div className="container-header px-4 sm:px-6 lg:px-8">
-          {/* Top row: utils */}
-          <div className="flex items-center justify-end gap-2 py-2">
-            {utils}
-            <MobileMenu items={mobileItems} />
+          {/* Mobile: logo full-width, utils centered below */}
+          <div className="flex flex-col items-center md:hidden">
+            <div className="flex w-full items-center justify-center py-2">{logo}</div>
+            <div className="flex items-center gap-2 pb-2">
+              {utils}
+              <MobileMenu items={mobileItems} />
+            </div>
           </div>
-          {/* Center logo + nav */}
-          <div className="flex flex-col items-center pb-3">
-            <div style={{ height: logoHeight ? `${logoHeight}px` : "32px" }}>{logo}</div>
-            <nav className="mt-3 hidden items-center gap-8 md:flex">
-              <NavItems items={items} />
-            </nav>
+          {/* Desktop */}
+          <div className="hidden md:block">
+            <div className="flex items-center justify-end gap-2 py-2">
+              {utils}
+            </div>
+            <div className="flex flex-col items-center pb-3">
+              <div style={{ height: logoHeight ? `${logoHeight}px` : "32px" }}>{logo}</div>
+              <nav className="mt-3 flex items-center gap-8">
+                <NavItems items={items} />
+              </nav>
+            </div>
           </div>
         </div>
       </header>
@@ -213,8 +229,17 @@ export async function Header() {
   if (headerLayout === "minimal") {
     return (
       <header className="sticky top-0 z-40 bg-[var(--header-bg)]">
+        {/* Mobile: logo full-width on top, utils below */}
+        <div className="flex flex-col px-4 md:hidden">
+          <div className="flex w-full items-center justify-center py-2">{logo}</div>
+          <div className="flex items-center justify-center gap-2 pb-2">
+            {utils}
+            <MobileMenu items={mobileItems} alwaysShow />
+          </div>
+        </div>
+        {/* Desktop */}
         <div
-          className="container-header flex items-center px-4 sm:px-6 lg:px-8"
+          className="container-header hidden items-center px-4 sm:px-6 lg:px-8 md:flex"
           style={{ height: headerH }}
         >
           <div className="flex shrink-0 items-center">{logo}</div>
@@ -230,14 +255,22 @@ export async function Header() {
   /* ── Stacked: Logo + utils top row | Full-width nav bar below ── */
   return (
     <header className="sticky top-0 z-40 bg-[var(--header-bg)]">
+      {/* Mobile: logo full-width on top, utils below */}
+      <div className="flex flex-col px-4 md:hidden">
+        <div className="flex w-full items-center justify-center py-2">{logo}</div>
+        <div className="flex items-center justify-center gap-2 pb-2">
+          {utils}
+          <MobileMenu items={mobileItems} />
+        </div>
+      </div>
+      {/* Desktop */}
       <div
-        className="container-header flex items-center px-4 sm:px-6 lg:px-8"
+        className="container-header hidden items-center px-4 sm:px-6 lg:px-8 md:flex"
         style={{ height: headerH }}
       >
         <div className="flex shrink-0 items-center">{logo}</div>
         <div className="ml-auto flex items-center gap-2">
           {utils}
-          <MobileMenu items={mobileItems} />
         </div>
       </div>
       <div className="hidden bg-muted/50 md:block">

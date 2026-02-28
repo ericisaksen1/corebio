@@ -550,7 +550,8 @@ export function Hero3D() {
         style={{ minHeight: "calc(100dvh - var(--header-height, 64px) - var(--toolbar-height, 0px))" }}
       >
         {/* Text content */}
-        <div className="z-10 px-6 py-20 text-center lg:px-12 lg:text-left">
+        <div className="z-10 flex items-center justify-center px-6 py-20 text-center lg:px-12 lg:text-left">
+          <div className="w-full max-w-[800px]">
           <h1 className="text-4xl font-bold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
             High-Integrity Peptides,{" "}
             <span className="text-blue-400">Proven Quality</span>
@@ -567,6 +568,7 @@ export function Hero3D() {
             >
               Shop Now
             </Link>
+          </div>
           </div>
         </div>
 
