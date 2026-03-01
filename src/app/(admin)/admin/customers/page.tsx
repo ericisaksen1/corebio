@@ -3,6 +3,7 @@ import { auth } from "@/auth"
 import { formatCurrency } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { RoleSelect } from "./role-select"
+import { UserActions } from "./user-actions"
 
 export const metadata = { title: "Customers | Admin" }
 
@@ -51,6 +52,8 @@ export default async function AdminCustomersPage() {
                 <th className="px-4 py-3 text-left font-medium">Orders</th>
                 <th className="px-4 py-3 text-left font-medium">Total Spent</th>
                 <th className="px-4 py-3 text-left font-medium">Joined</th>
+                <th className="px-4 py-3 text-left font-medium">Status</th>
+                <th className="px-4 py-3 text-left font-medium">Actions</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-border">
@@ -82,6 +85,27 @@ export default async function AdminCustomersPage() {
                     <td className="px-4 py-3">{formatCurrency(totalSpent)}</td>
                     <td className="px-4 py-3 text-secondary">
                       {new Date(customer.createdAt).toLocaleDateString()}
+                    </td>
+                    <td className="px-4 py-3">
+                      <Badge
+                        variant={
+                          customer.status === "ACTIVE"
+                            ? "green"
+                            : customer.status === "SUSPENDED"
+                              ? "yellow"
+                              : "red"
+                        }
+                      >
+                        {customer.status}
+                      </Badge>
+                    </td>
+                    <td className="px-4 py-3">
+                      <UserActions
+                        userId={customer.id}
+                        status={customer.status}
+                        isSelf={customer.id === session?.user?.id}
+                        isSuperAdmin={customer.role === "SUPER_ADMIN"}
+                      />
                     </td>
                   </tr>
                 )

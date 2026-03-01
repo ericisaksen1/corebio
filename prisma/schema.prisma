@@ -18,6 +18,12 @@ enum UserRole {
   SUPER_ADMIN
 }
 
+enum UserStatus {
+  ACTIVE
+  SUSPENDED
+  DELETED
+}
+
 enum OrderStatus {
   AWAITING_PAYMENT
   PAYMENT_COMPLETE
@@ -77,6 +83,7 @@ model User {
   passwordHash  String?
   image         String?
   role          UserRole  @default(CUSTOMER)
+  status        UserStatus @default(ACTIVE)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 

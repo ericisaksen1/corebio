@@ -31,6 +31,14 @@ export function RoleSelect({ userId, currentRole, isSelf }: RoleSelectProps) {
   function handleChange(e: React.ChangeEvent<HTMLSelectElement>) {
     const newRole = e.target.value as UserRole
     if (newRole === currentRole) return
+
+    if (newRole === "ADMIN") {
+      if (!confirm("Are you sure you want to make this user an Admin? They will have full access to the admin panel.")) {
+        e.target.value = currentRole
+        return
+      }
+    }
+
     setError("")
     startTransition(async () => {
       const result = await updateUserRole(userId, newRole)

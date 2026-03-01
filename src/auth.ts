@@ -32,6 +32,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           user.passwordHash
         )
         if (!isValid) return null
+        if (user.status !== "ACTIVE") return null
 
         return {
           id: user.id,
