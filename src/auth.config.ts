@@ -1,5 +1,4 @@
 import type { NextAuthConfig } from "next-auth"
-import { prisma } from "@/lib/prisma"
 
 export default {
   pages: {
@@ -23,17 +22,6 @@ export default {
     },
     async authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user
-
-      // Block suspended/deleted users on every request
-      if (isLoggedIn && auth?.user?.id) {
-        const user = await prisma.user.findUnique({
-          where: { id: auth.user.id },
-          select: { status: true },
-        })
-        if (user?.status !== "ACTIVE") {
-          return false
-        }
-      }
 
       const isAdmin = auth?.user?.role === "ADMIN" || auth?.user?.role === "SUPER_ADMIN"
       const isAffiliate = auth?.user?.role === "AFFILIATE" || isAdmin
