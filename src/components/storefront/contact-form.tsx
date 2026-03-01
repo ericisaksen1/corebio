@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react"
 import { submitContactMessage } from "@/actions/contact"
+import { Turnstile } from "@/components/ui/turnstile"
 
 export type ContactPageStyle = "standard" | "centered" | "split" | "minimal"
 
@@ -83,6 +84,8 @@ function FormFields({ isPending, submitted }: { isPending: boolean; submitted: b
           placeholder="Tell us more..."
         />
       </div>
+      <Turnstile />
+
       <button
         type="submit"
         disabled={isPending}

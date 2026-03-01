@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { requestPasswordReset } from "@/actions/auth"
+import { Turnstile } from "@/components/ui/turnstile"
 
 export function ForgotPasswordForm() {
   const [error, setError] = useState<string | null>(null)
@@ -51,6 +52,8 @@ export function ForgotPasswordForm() {
             required
             autoComplete="email"
           />
+
+          <Turnstile />
 
           <Button type="submit" className="w-full" disabled={loading}>
             {loading ? "Sending..." : "Send reset link"}

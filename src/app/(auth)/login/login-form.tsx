@@ -6,6 +6,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { login, loginWithMagicLink } from "@/actions/auth"
+import { Turnstile } from "@/components/ui/turnstile"
 
 export function LoginForm() {
   const [error, setError] = useState<string | null>(null)
@@ -96,6 +97,8 @@ export function LoginForm() {
           </div>
         </>
       )}
+
+      <Turnstile />
 
       <Button type="submit" className="w-full" disabled={loading}>
         {loading

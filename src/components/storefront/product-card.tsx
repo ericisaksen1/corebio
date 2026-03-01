@@ -224,7 +224,7 @@ export function ProductCard({
         </p>
         {reviewBlock}
 
-        <div className="mt-3 flex items-center gap-2">
+        <div className="mt-auto flex items-center gap-2 pt-3">
           <Link
             href={`/products/${product.slug}`}
             className="flex-1 rounded-full border border-[var(--color-product-btn-border)] bg-[var(--color-product-btn-bg)] px-5 py-2.5 text-center text-sm font-medium text-[var(--color-product-btn-text)] transition-all duration-150 hover:bg-[var(--color-product-btn-hover-bg)] hover:text-[var(--color-product-btn-hover-text)]"

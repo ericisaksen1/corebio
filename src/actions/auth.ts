@@ -7,8 +7,13 @@ import { signIn, signOut } from "@/auth"
 import { AuthError } from "next-auth"
 import { notifyAdminNewUser, sendPasswordResetEmail, notifyCustomerPasswordChanged } from "@/lib/email/notify"
 import crypto from "crypto"
+import { verifyTurnstileToken } from "@/lib/turnstile"
 
 export async function register(formData: FormData) {
+  const turnstileToken = formData.get("cf-turnstile-response") as string | null
+  const turnstile = await verifyTurnstileToken(turnstileToken)
+  if (!turnstile.success) return { error: turnstile.error }
+
   const rawData = {
     name: formData.get("name") as string,
     email: formData.get("email") as string,
@@ -45,6 +50,10 @@ export async function register(formData: FormData) {
 }
 
 export async function login(formData: FormData) {
+  const turnstileToken = formData.get("cf-turnstile-response") as string | null
+  const turnstile = await verifyTurnstileToken(turnstileToken)
+  if (!turnstile.success) return { error: turnstile.error }
+
   const email = formData.get("email") as string
   const password = formData.get("password") as string
 
@@ -68,6 +77,10 @@ export async function login(formData: FormData) {
 }
 
 export async function loginWithMagicLink(formData: FormData) {
+  const turnstileToken = formData.get("cf-turnstile-response") as string | null
+  const turnstile = await verifyTurnstileToken(turnstileToken)
+  if (!turnstile.success) return { error: turnstile.error }
+
   const email = formData.get("email") as string
 
   try {
@@ -88,6 +101,10 @@ export async function logout() {
 }
 
 export async function requestPasswordReset(formData: FormData) {
+  const turnstileToken = formData.get("cf-turnstile-response") as string | null
+  const turnstile = await verifyTurnstileToken(turnstileToken)
+  if (!turnstile.success) return { error: turnstile.error }
+
   const email = (formData.get("email") as string)?.trim().toLowerCase()
 
   if (!email) {

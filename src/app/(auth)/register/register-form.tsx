@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { register } from "@/actions/auth"
+import { Turnstile } from "@/components/ui/turnstile"
 
 export function RegisterForm() {
   const [error, setError] = useState<string | null>(null)
@@ -72,6 +73,8 @@ export function RegisterForm() {
         minLength={8}
         autoComplete="new-password"
       />
+
+      <Turnstile />
 
       <Button type="submit" className="w-full" disabled={loading}>
         {loading ? "Creating account..." : "Create account"}

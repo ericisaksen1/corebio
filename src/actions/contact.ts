@@ -4,8 +4,13 @@ import { prisma } from "@/lib/prisma"
 import { revalidatePath } from "next/cache"
 import { auth } from "@/auth"
 import { notifyAdminContactMessage } from "@/lib/email/notify"
+import { verifyTurnstileToken } from "@/lib/turnstile"
 
 export async function submitContactMessage(formData: FormData) {
+  const turnstileToken = formData.get("cf-turnstile-response") as string | null
+  const turnstile = await verifyTurnstileToken(turnstileToken)
+  if (!turnstile.success) return { error: turnstile.error }
+
   const name = (formData.get("name") as string || "").trim()
   const email = (formData.get("email") as string || "").trim()
   const subject = (formData.get("subject") as string || "").trim()
