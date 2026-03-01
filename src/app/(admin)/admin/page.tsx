@@ -113,7 +113,7 @@ export default async function AdminDashboardPage() {
                         </Link>
                       </td>
                       <td className="whitespace-nowrap px-4 py-3 text-sm text-secondary">
-                        {order.user.name || order.user.email}
+                        {order.user?.name || order.user?.email || "Deleted user"}
                       </td>
                       <td className="whitespace-nowrap px-4 py-3 text-sm text-secondary">
                         {order.status.replace(/_/g, " ")}

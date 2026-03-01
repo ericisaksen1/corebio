@@ -146,8 +146,14 @@ export default async function AdminOrderDetailPage({ params }: Props) {
           <div className="rounded-lg border border-gray-200 bg-white p-6">
             <h3 className="text-sm font-semibold">Customer</h3>
             <div className="mt-3 text-sm">
-              <p className="font-medium">{order.user.name || "No name"}</p>
-              <p className="text-gray-500">{order.user.email}</p>
+              {order.user ? (
+                <>
+                  <p className="font-medium">{order.user.name || "No name"}</p>
+                  <p className="text-gray-500">{order.user.email}</p>
+                </>
+              ) : (
+                <p className="text-gray-400 italic">Deleted user</p>
+              )}
             </div>
           </div>
 

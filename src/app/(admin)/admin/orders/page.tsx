@@ -79,7 +79,7 @@ export default async function AdminOrdersPage({ searchParams }: Props) {
                     </Link>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4 text-sm text-secondary">
-                    {order.user.name || order.user.email}
+                    {order.user?.name || order.user?.email || "Deleted user"}
                   </td>
                   <td className="whitespace-nowrap px-6 py-4 text-sm text-secondary">
                     {order.payment?.method.replace("_", " ") || "—"}
