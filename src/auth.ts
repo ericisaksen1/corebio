@@ -14,25 +14,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   session: { strategy: "jwt" },
   callbacks: {
     ...authConfig.callbacks,
-    async jwt({ token, user }) {
-      // Initial sign-in: populate token
-      if (user) {
-        token.id = user.id as string
-        token.role = user.role
-        return token
-      }
-      // Subsequent requests: check if user is still active
-      if (token.id) {
-        const dbUser = await prisma.user.findUnique({
-          where: { id: token.id as string },
-          select: { status: true },
-        })
-        if (!dbUser || dbUser.status !== "ACTIVE") {
-          return null as any
-        }
-      }
-      return token
-    },
   },
   providers: [
     Credentials({
