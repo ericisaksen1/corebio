@@ -130,13 +130,8 @@ export async function permanentlyDeleteUser(userId: string) {
   await prisma.wishlistItem.deleteMany({ where: { userId } })
   await prisma.productReview.deleteMany({ where: { userId } })
   await prisma.address.deleteMany({ where: { userId } })
-  if (user.role === "AFFILIATE") {
-    const affiliate = await prisma.affiliate.findUnique({ where: { userId } })
-    if (affiliate) {
-      await prisma.commission.deleteMany({ where: { affiliateId: affiliate.id } })
-      await prisma.affiliate.delete({ where: { userId } })
-    }
-  }
+  // Cascade handles AffiliateClick + AffiliateCommission
+  await prisma.affiliate.deleteMany({ where: { userId } })
   await prisma.cart.deleteMany({ where: { userId } })
 
   // Nullify orders so order history is preserved
