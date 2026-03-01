@@ -134,12 +134,7 @@ export async function permanentlyDeleteUser(userId: string) {
   await prisma.affiliate.deleteMany({ where: { userId } })
   await prisma.cart.deleteMany({ where: { userId } })
 
-  // Nullify orders so order history is preserved
-  await prisma.order.updateMany({
-    where: { userId },
-    data: { userId: null as any },
-  })
-
+  // Orders are preserved — onDelete: SetNull nullifies userId automatically
   await prisma.user.delete({ where: { id: userId } })
 
   revalidatePath("/admin/customers")
